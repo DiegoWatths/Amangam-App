@@ -10,6 +10,7 @@ Esta applicación consta de:
 * Permitir un acceso limitado a usuarios que no se hayan registrado, hasta que este se registre
 * Seguimiento de series (favoritos)
 * Recordatorio de donde lo dejaste
+* Notificaciones *push* cuando se suba un capitulo nuevo a un manga favorito
 * Configuración de lectura del manga (a preferencia del usuario)
 * Vista para cada manga con su información relevante
 * Gestión de un sistema de comentarios para cada manga (solo usuarios registrados y admin)
