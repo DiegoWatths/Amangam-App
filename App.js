@@ -1,13 +1,14 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import Register from './screens/register'
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Test</Text>
-      <StatusBar style="auto" />
-    </View>
+      <View style={styles.container}>
+        <Register></Register>
+        <StatusBar style="auto" />
+      </View>
   );
 }
 
