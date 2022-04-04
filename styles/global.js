@@ -20,5 +20,10 @@ export const globalStyles = StyleSheet.create({
           padding: 8,
           margin: 10,
           width: 200,
+      },
+      button: {
+        alignItems: "center",
+        backgroundColor: "#DDDDDD",
+        padding: 10
       }
 })
