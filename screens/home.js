@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View, Button, TouchableOpacity} from 'react-native'
+import {StyleSheet, Text, View, Button} from 'react-native'
 import {globalStyles} from '../styles/global'
 
 export default function Home(){
@@ -14,12 +14,8 @@ export default function Home(){
             <Button title='Iniciar'/>
             <Button title='Unirse'/>
             <Text styles={globalStyles.subtitles}>
-                O
+                Continuar Sin Iniciar
             </Text>
-            <TouchableOpacity>
-                style={globalStyles.button}
-                <Text>Continuar Sin Iniciar</Text>
-            </TouchableOpacity>
         </View>
     )
 }
