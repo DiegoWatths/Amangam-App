@@ -1,22 +1,8 @@
 import React from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TouchableWithoutFeedback, Keyboard } from 'react-native';
-import Register from './screens/register'
+import Home from './screens/home'
 
 export default function App() {
   return (
-      <View style={styles.container}>
-        <Register></Register>
-        <StatusBar style="auto" />
-      </View>
+      <Home />
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
