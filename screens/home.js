@@ -13,12 +13,12 @@ export default function Home(){
             <Text style={globalStyles.subtitles}>
                 Inicia Sesion o Regístrate
             </Text>
-            <Pressable style={globalStyles.button}>
+            <Pressable style={({pressed}) => globalStyles.button(pressed)}>
                 <Text style={globalStyles.subtitles}>
                     Iniciar
                 </Text>
             </Pressable>
-            <Pressable style={globalStyles.button}>
+            <Pressable style={({pressed}) => globalStyles.button(pressed)}>
                 <Text style={globalStyles.subtitles}>
                     Registrar
                 </Text>

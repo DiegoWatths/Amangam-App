@@ -22,17 +22,8 @@ export const globalStyles = StyleSheet.create({
         padding: 8,
         margin: 10,
         width: 200,
-      },
-      button: {
-        alignItems: "center",
-        backgroundColor: "#b36b00",
-        padding: 10,
-        width: 150,
-        marginTop: 10,
-        borderTopLeftRadius: 10,
-        borderTopRightRadius: 10,
-        borderBottomLeftRadius: 10,
-        borderBottomRightRadius: 10,
+        backgroundColor: "#cccccc",
+        borderRadius: 10
       },
      bottom: {
         fontSize: 20,
@@ -43,9 +34,20 @@ export const globalStyles = StyleSheet.create({
      imagen: {
         width: 250,
         height: 250,
-        borderTopLeftRadius: 120,
-        borderTopRightRadius: 120,
-        borderBottomLeftRadius: 120,
-        borderBottomRightRadius: 120,
-     }
+        borderRadius: 120
+     },
+     button: (pressed) => {
+      const bgColor = pressed? "#ff9900" : "#b36b00";
+      const op = pressed? 0.8 : 1;
+
+      return {
+        alignItems: "center",
+        backgroundColor: bgColor,
+        opacity: op,
+        padding: 10,
+        width: 150,
+        marginTop: 10,
+        borderRadius: 20
+      }
+    }
 })
