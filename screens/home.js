@@ -1,9 +1,6 @@
 import React from 'react';
-<<<<<<< Updated upstream
-import { Text, View, Button} from 'react-native'
-=======
 import { Text, View, Pressable, Image } from 'react-native'
->>>>>>> Stashed changes
+
 import {globalStyles} from '../styles/global'
 
 export default function Home(){
