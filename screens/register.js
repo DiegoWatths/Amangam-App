@@ -5,36 +5,56 @@ import {globalStyles} from '../styles/global'
 export default function Register(){
     const [name, setName] = useState('');
     const [lastname, setLastname] = useState('');
+    const [username, setUsername] = useState('');
     const [mail, setMail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const URI = 'http://localhost:2000'
+    var error = false; 
 
     const register = () => {
         /*TODO: 
-            •Confirm if given mail is valid
             •Check if an input's value is emtpy, return if true
+            •Confirm if both passwords are the same
         */
 
-        //Check if both password inouts are the same
-        if (confirmPassword == password) {
-            fetch(`${process.env.SERVER_URI}/register`, {
-                method: "POST",
-                mode: "cors",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Access-Control-Request-Methods" : "POST, OPTIONS"
-                },
-                body: JSON.stringify({
-                    "name": name,
-                    "lastname": lastname,
-                    "mail": mail,
-                    "password": password
+        //Check empty input
+        if(!(name == '' || lastname == '' || username == '' || mail == '' || password == '' || confirmPassword == '')){
+            //Check if both password inputs are the same
+            if(confirmPassword != password){
+                Alert.alert('Error!', 'La confirmación de su contraseña no concuerda con su contraseña', [
+                    {text: 'Ok manubrio mala mía', onPress: () => console.log('bruh he misstyped...') }
+                ]);
+                error = true;
+            }
+
+            if (!error) {
+                fetch(`${URI}/register`, {
+                    method: "POST",
+                    mode: "cors",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Access-Control-Request-Methods" : "POST, OPTIONS"
+                    },
+                    body: JSON.stringify({
+                        "name": name,
+                        "lastname": lastname,
+                        "username": username,
+                        "mail": mail,
+                        "password": password
+                    })
                 })
-            })
-            .catch(err => console.log(err.message));
-        } else {
-            Alert.alert('Error!', 'La confirmación de su contraseña no concuerda con su contraseña', [
-                {text: 'Ok manubrio mala mía', onPress: () => console.log('bruh he misstyped...') }
+                .then((response) => response.json())
+                .then( (res) =>{
+                    Alert.alert('Registro exitoso', 'Se ha registrado exitosamente', [
+                        {text: 'Ok manubrio mala mía', onPress: () => console.log(res) }
+                    ])}
+                )
+                .catch(err => console.log(err.message));
+            } else return;
+        }else{
+            Alert.alert('Error!', 'Algunos de las entradas están vacías. Por favor llene todas las entradas', [
+                {text: 'Aceptar', onPress: () => console.log('Error No1 Faulty data input') }
             ]);
         }
     }
@@ -60,13 +80,15 @@ export default function Register(){
                 onChangeText={setLastname}
             />
             <TextInput selectionColor={"#b36b00"} style={globalStyles.input}
+                placeholder="Nombre de Usuario"
+                value={username}
+                onChangeText={setUsername}
+            />
+            <TextInput selectionColor={"#b36b00"} style={globalStyles.input}
                 placeholder="Correo"
                 value={mail}
                 onChangeText={setMail}
             />
-            <Text style={globalStyles.subtitles}>
-            Ingresa una contraseña
-            </Text>
             <TextInput selectionColor={"#b36b00"} style={globalStyles.input}
                 placeholder="Contraseña"
                 value={password}
