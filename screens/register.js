@@ -55,12 +55,12 @@ export default function Register(){
                 onChangeText={setName}
             />
             <TextInput selectionColor={"#b36b00"} style={globalStyles.input}
-                placeholder="lastname"
+                placeholder="Apellido"
                 value={lastname}
                 onChangeText={setLastname}
             />
             <TextInput selectionColor={"#b36b00"} style={globalStyles.input}
-                placeholder="mail"
+                placeholder="Correo"
                 value={mail}
                 onChangeText={setMail}
             />

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import { Text, View, TextInput, Pressable, Image, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import {globalStyles} from '../styles/global'
 
