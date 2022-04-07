@@ -77,7 +77,7 @@ export default function Register(){
                 value={confirmPassword}
                 onChangeText={setConfirmPassword}
             />
-                <Pressable style={({pressed}) => globalStyles.button(pressed)} onPress={register}>
+            <Pressable style={({pressed}) => globalStyles.button(pressed)} onPress={register}>
                 <Text style={globalStyles.subtitles}>
                     Registrarse
                 </Text>
