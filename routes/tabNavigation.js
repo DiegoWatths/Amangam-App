@@ -13,11 +13,11 @@ export default function TabNav() {
       <Tab.Navigator labeled={false} 
       screenOptions={{
           headerShown: false,
-          tabBarActiveTintColor: "#b36b00",
-          tabBarInactiveTintColor: '#364444',
+          tabBarActiveTintColor: "#b36b00", //gold
+          tabBarInactiveTintColor: '#364444', //gray
           tabBarStyle: [{
               display: "flex",
-              backgroundColor: '#011919',
+              backgroundColor: '#011919', //Dark cyan AKA Dark Prismarine™ color
               borderTopColor: '#011919',
           }]
         }}
