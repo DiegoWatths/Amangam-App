@@ -9,8 +9,8 @@ export default function Register(){
     const [mail, setMail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    const URI = 'http://localhost:2000'
-    var error = false; 
+    const URI = 'http://http://localhost:2000'
+    var error = false;
 
     const register = () => {
         /*TODO: 
