@@ -9,10 +9,9 @@ export default function Register(){
     const [mail, setMail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    const URI = 'http://http://localhost:2000'
     var error = false;
 
-    const register = () => {
+    const register = async () => {
         /*TODO: 
             •Check if an input's value is emtpy, return if true
             •Confirm if both passwords are the same
@@ -29,7 +28,7 @@ export default function Register(){
             }
 
             if (!error) {
-                fetch(`${URI}/register`, {
+                await fetch(`${process.env.SERVER_URI}/register`, {
                     method: "POST",
                     mode: "cors",
                     headers: {
@@ -40,7 +39,7 @@ export default function Register(){
                         "name": name,
                         "lastname": lastname,
                         "username": username,
-                        "mail": mail,
+                        "email": mail,
                         "password": password
                     })
                 })
