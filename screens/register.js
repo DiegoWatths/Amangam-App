@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Text, View, TextInput, Pressable, Image, Keyboard, TouchableWithoutFeedback, Alert } from 'react-native';
 import {globalStyles} from '../styles/global'
+import {SERVER_URI} from '@env'
 
 export default function Register(){
     const [name, setName] = useState('');
@@ -28,7 +29,7 @@ export default function Register(){
             }
 
             if (!error) {
-                await fetch(`${process.env.SERVER_URI}/register`, {
+                await fetch(`${SERVER_URI}/register`, {
                     method: "POST",
                     mode: "cors",
                     headers: {
