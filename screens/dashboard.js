@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from "react";
 import { Modal, Text, View, TextInput, Pressable } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-
 import {globalStyles} from '../styles/global'
 
-export default function Dashboard(){
-    //const [modalOpen, setModalOpen] = useState(false);
+export default function Dashboard({navigation}){
+    const [image, setImage] = useState(null);
+    const [modalOpen, setModalOpen] = useState(false);
     const [newManga, setNewManga] = useState({
         title: '',
         genre: '',
@@ -19,9 +19,10 @@ export default function Dashboard(){
     const upload = async () =>{
         
     }
+
     return (
         <View style={globalStyles.container}>
-            {/* <Modal visible={modalOpen} animationType={'fade'}>
+            <Modal visible={modalOpen} animationType={'fade'}>
                 <MaterialCommunityIcons name="close"
                     color={'red'} size={26}
                     onPress={() => setModalOpen(!modalOpen)}
@@ -36,9 +37,9 @@ export default function Dashboard(){
                 value={newManga.genre}
                 onChangeText={e => setNewManga({...newManga, genre: e})}
                 />
-                <Pressable style={({pressed}) => globalStyles.button(pressed)} onPress={upload}>
+                <Pressable style={({pressed}) => globalStyles.button(pressed)} onPress={() => navigation.navigate('Upload')}>
                     <Text style={globalStyles.subtitles}>
-                        Imagenes
+                        Subir Paginas
                     </Text>
                 </Pressable>
             </Modal>
@@ -46,7 +47,7 @@ export default function Dashboard(){
             <MaterialCommunityIcons name="book-open-variant"
                 color={'lightgray'} size={26}
                 onPress={() => setModalOpen(!modalOpen)}
-            /> */}
+            />
             <Text style={globalStyles.title}>
             This is the dashboard page
             </Text>
