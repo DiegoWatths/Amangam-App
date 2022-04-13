@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { Text, View, TextInput, Pressable, Image, Keyboard, TouchableWithoutFeedback, Alert } from 'react-native';
 import {globalStyles} from '../styles/global'
+import {AuthContext} from '../context/AuthContext';
+import {AxiosContext} from '../context/AxiosContext';
 import {SERVER_URI} from '@env'
 
-export default function Register(){
+export default function Register({navigation}){
     const [name, setName] = useState('');
     const [lastname, setLastname] = useState('');
     const [username, setUsername] = useState('');
@@ -47,8 +49,9 @@ export default function Register(){
                 .then((response) => response.json())
                 .then( (res) =>{
                     Alert.alert('Registro exitoso', 'Se ha registrado exitosamente', [
-                        {text: 'Ok manubrio mala mía', onPress: () => console.log(res) }
-                    ])}
+                    {text: 'Continuar', onPress: () => navigation.navigate('Dashboard') }
+                ])
+                    }
                 )
                 .catch(err => console.log(err.message));
             } else return;
@@ -89,12 +92,12 @@ export default function Register(){
                 value={mail}
                 onChangeText={setMail}
             />
-            <TextInput selectionColor={"#b36b00"} style={globalStyles.input}
+            <TextInput secureTextEntry={true} selectionColor={"#b36b00"} style={globalStyles.input}
                 placeholder="Contraseña"
                 value={password}
                 onChangeText={setPassword}
             />
-            <TextInput selectionColor={"#b36b00"} style={globalStyles.input}
+            <TextInput secureTextEntry={true} selectionColor={"#b36b00"} style={globalStyles.input}
                 placeholder="Confirma Contraseña"
                 value={confirmPassword}
                 onChangeText={setConfirmPassword}

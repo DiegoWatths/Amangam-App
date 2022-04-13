@@ -1,14 +1,48 @@
 import React from 'react';
 import { useState } from 'react';
-import { Text, View, TextInput, Pressable, Image, Keyboard, TouchableWithoutFeedback } from 'react-native';
+import { Text, View, TextInput, Pressable, Image, Keyboard, TouchableWithoutFeedback, Alert } from 'react-native';
 import {globalStyles} from '../styles/global'
+import {AuthContext} from '../context/AuthContext';
+import * as Keychain from 'react-native-keychain';
+import {AxiosContext} from '../context/AxiosContext';
 
 export default function Login(){
     const [mail, setMail] = useState('');
     const [password, setPassword] = useState('');
+    const authContext = useContext(AuthContext);
+    const {publicAxios} = useContext(AxiosContext);
 
-    const login = () =>{
+    const login = async () =>{
         //Logic to authenticate an user
+        if(!(mail == '' || password == '')){
+            try {
+                const response = await publicAxios.post('/login', {
+                  email,
+                  password,
+                });
+          
+                const {accessToken, refreshToken} = response.data;
+                authContext.setAuthState({
+                  accessToken,
+                  refreshToken,
+                  authenticated: true,
+                });
+          
+                await Keychain.setGenericPassword(
+                  'token',
+                  JSON.stringify({
+                    accessToken,
+                    refreshToken,
+                  }),
+                );
+              } catch (error) {
+                Alert.alert('Login Failed', error.response.data.message);
+              }
+        }else{
+            Alert.alert('Error!', 'Algunos de las entradas están vacías. Por favor llene todas las entradas', [
+                {text: 'Aceptar', onPress: () => console.log('Error No1 Faulty data input') }
+            ]);
+        }
     }
 
     return(
