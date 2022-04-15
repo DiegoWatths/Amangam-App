@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import { Text, View, Modal, FlatList, Image, Dimensions } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {SERVER_URI} from '@env'
 
 import Header from '../shared/header'
 
@@ -11,7 +12,7 @@ var height = Dimensions.get('window').height; //full height
 
 export default function Manga({route}){
     const [modalOpen, setModalOpen] = useState(false)
-    const [manga, setManga] = useState({})
+    const [manga, setManga] = useState(route.params.manga)
     const [data, setData] = useState([])
     const [isHorizontal, setIsHorizontal] = useState(true)
     const [isInverted, setIsInverted] = useState(false)
@@ -19,17 +20,7 @@ export default function Manga({route}){
     var images = [];
     var key = 1;
 
-    useEffect( async () =>{
-        await fetch(`https://amangam-server.herokuapp.com/manga/${route.params.title}`)
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            setManga(data)
-        })
-        .catch(err => console.log(err.message))
-
-        console.log(manga);
-
+    useEffect( () =>{
         manga.mangaImages.forEach(element => {
             images.push({
                 key: key,
@@ -66,7 +57,7 @@ export default function Manga({route}){
             <Text style={globalStyles.title}>
             Manga info and images
             </Text>
-            
+
         </View>
     )
 }

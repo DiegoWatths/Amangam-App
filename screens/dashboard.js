@@ -13,7 +13,7 @@ export default function Dashboard({navigation}){
             <Text style={globalStyles.title}>
             This is the dashboard page
             </Text>
-            <List navigation={navigation}/>
+            <List navigation={navigation} Search={false}/>
         </View>
     )
 }
