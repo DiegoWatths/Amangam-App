@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Text, View, FlatList, Image, Pressable } from 'react-native';
-import { SearchBar } from 'react-native-elements';
+import React from "react";
+import { Text, View } from 'react-native';
 import {globalStyles} from '../styles/global'
 
 import List from '../shared/list'
@@ -12,10 +11,7 @@ export default function Search({navigation}){
             <Text style={globalStyles.title}>
                 Buscar Mangas por Capitulos
             </Text>
-            <SearchBar 
-                placeholder="Busque aquí..."
-            />
-            <List />
+            <List navigation={navigation} Search={true}/>
         </View>
     )
 }

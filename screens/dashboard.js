@@ -13,7 +13,7 @@ export default function Dashboard({navigation}){
             <Text style={globalStyles.title}>
             Mangas
             </Text>
-            <List navigation={navigation}/>
+            <List navigation={navigation} Search={false}/>
         </View>
     )
 }
