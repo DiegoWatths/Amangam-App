@@ -10,6 +10,10 @@ const handleClick = () => {
     ]);
 }
 
+const [profile, setProfile] = useState({})
+const [data, setData] = useState([])
+
+
 export default function Profile(){
     return (
         <View style={globalStyles.container}>

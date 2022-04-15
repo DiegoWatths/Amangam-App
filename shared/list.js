@@ -16,7 +16,7 @@ export default function List({navigation}){
 
     const Item = ({item, onPress}) => (
         <Pressable onPress={onPress} style={ (pressed) => globalStyles.button(pressed)}>
-            <Image source={{ uri: item.mangaImages[0]}} />
+            <Image source={{ uri: item.mangaImages[0]}}/>
             <Text style={globalStyles.subtitles}>{item.title}</Text>
             <Text style={globalStyles.subtitles}>{item.author}</Text>
         </Pressable>

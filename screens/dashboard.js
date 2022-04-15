@@ -11,7 +11,7 @@ export default function Dashboard({navigation}){
         <View style={globalStyles.container}>
             <Header title={'DashBoard'} icon={'plus-circle-outline'} onClick={ () => navigation.navigate('Upload')} />
             <Text style={globalStyles.title}>
-            This is the dashboard page
+            Mangas
             </Text>
             <List navigation={navigation}/>
         </View>
