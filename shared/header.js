@@ -17,12 +17,12 @@ export default function Header({ title, icon ,onClick }) {
 const styles = StyleSheet.create({
   header: {
     width: '100%',
-    height: 100,
+    height: 135,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#011919',
-    display: 'flex',
+    marginBottom: 10,
   },
   headerText: {
     fontWeight: 'bold',
@@ -31,7 +31,8 @@ const styles = StyleSheet.create({
     letterSpacing: 1,
   },
   icon: {
+    top: 100,
     position: 'absolute',
-    right: 16
+    right: 12
   }
 });

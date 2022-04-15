@@ -3,7 +3,7 @@ import { Text, View, FlatList, Image, Pressable, TextInput } from 'react-native'
 import {SERVER_URI} from '@env'
 
 import {globalStyles} from '../styles/global'
-import { Button } from "react-native-elements";
+import { Button, Avatar } from "react-native-elements";
 
 export default function List({navigation, Search}){
     const [mangas, setMangas] = useState({});
@@ -39,10 +39,28 @@ export default function List({navigation, Search}){
       };
     
     const Item = ({item, onPress}) => (
-        <Pressable onPress={onPress} style={ (pressed) => globalStyles.button(pressed)}>
-            <Image source={{ uri: item.mangaImages[0]}} />
-            <Text style={globalStyles.subtitles}>{item.title}</Text>
-            <Text style={globalStyles.subtitles}>{item.author}</Text>
+        <Pressable onPress={onPress} style={({pressed}) => {
+            const bgColor = pressed? "#022c2c" : "#011919";
+            const op = pressed? .8 : 1;
+
+            return {
+                backgroundColor: bgColor,
+                opacity: op,
+            }
+        }}>
+            <View style={{flexDirection: 'row', padding: 5, borderBottomWidth: 1, borderBottomColor: 'white', alignItems: 'center'}}>
+                <Avatar
+                    size={100}
+                    source={{
+                        uri:
+                        item.mangaImages[item.mangaImages.length - 1],
+                    }}
+                />
+                <View style={{width: 300, height: 140, justifyContent: 'space-evenly', marginLeft: 5}}>
+                    <Text style={globalStyles.subtitles}>{item.title} </Text>
+                    <Text style={[globalStyles.subtitles, {fontSize: 15, color: '#ccc'}]}> De {item.author}</Text>
+                </View>            
+            </View>
         </Pressable>
     );
 

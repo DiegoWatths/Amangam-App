@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import { Text, View, Modal, FlatList, Image, Dimensions } from 'react-native';
+import { Text, View, Modal, FlatList, Image, Dimensions, ScrollView } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Avatar } from 'react-native-elements';
 
@@ -17,6 +17,7 @@ export default function Manga({route}){
     const [data, setData] = useState([])
     const [isHorizontal, setIsHorizontal] = useState(true)
     const [isInverted, setIsInverted] = useState(false)
+    const [indexCover, setIndexCover] = useState(manga.mangaImages.length - 1)
 
     var images = [];
     var key = 1;
@@ -31,52 +32,59 @@ export default function Manga({route}){
         });
         
         console.log(manga);
+        console.log(indexCover);
         console.log(images);
 
         setData(images)
     }, [])
 
+    const getItemLayout = (data, index) => (
+        { length: 600, offset: 600 * index, index }
+      )    
+
     return (
-        <View style={globalStyles.container}>
-            <Header title={manga.title} icon={'book-open-variant'} onClick={ () => setModalOpen(true)} />
+        <ScrollView>
+            <View style={globalStyles.container}>
+                <Header title={manga.title} icon={'book-open-variant'} onClick={ () => setModalOpen(true)} />
 
-            <View style={{backgroundColor: '#012d2d'}}>
-                <Modal visible={modalOpen} animationType={'fade'}>
-                    <MaterialCommunityIcons name="close"
-                        color={'red'} size={26}
-                        onPress={() => setModalOpen(false)}
-                    />
-                    <View>
-                        <FlatList 
-                        horizontal={isHorizontal}
-                        data={data}
-                        inverted={isInverted}
-                        initialScrollIndex={0}
-                        renderItem={({ item }) => <Image style={{width: width, height: height}} source={{ uri: item.uri}} />}
+                <View style={{backgroundColor: '#012d2d'}}>
+                    <Modal visible={modalOpen} animationType={'fade'}>
+                        <MaterialCommunityIcons name="close"
+                            color={'red'} size={26}
+                            onPress={() => setModalOpen(false)}
                         />
-                    </View>
-                </Modal>
-            </View>
-            <Avatar
-                size={300}
-                source={{
-                    uri:
-                    manga.mangaImages[manga.mangaImages.length - 1],
-                }}
-                >
-            </Avatar>
+                        <View>
+                            <FlatList 
+                            horizontal={isHorizontal}
+                            data={data}
+                            getItemLayout={getItemLayout}
+                            inverted={isInverted}
+                            initialScrollIndex={indexCover}
+                            renderItem={({ item }) => <Image style={{width: 600, height: 800 }} source={{ uri: item.uri}} />}
+                            />
+                        </View>
+                    </Modal>
+                </View>
+                <Avatar
+                    size={350}
+                    source={{
+                        uri:
+                        manga.mangaImages[indexCover],
+                    }}
+                    >
+                </Avatar>
 
-            <View style={profileStyles.box}>
-                <Text style={globalStyles.subtitles}>
-                {`Producido por: ${manga.author}`}
-                </Text>
+                <View style={profileStyles.box}>
+                    <Text style={globalStyles.subtitles}>
+                    {`Producido por: ${manga.author}`}
+                    </Text>
+                </View>
+                <View style={profileStyles.box}>
+                    <Text style={profileStyles.text}>
+                        {manga.description}
+                    </Text>
+                </View>
             </View>
-            <View style={profileStyles.box}>
-                <Text style={profileStyles.text}>
-                    {manga.description}
-                </Text>
-            </View>
-
-        </View>
+        </ScrollView>
     )
 }
