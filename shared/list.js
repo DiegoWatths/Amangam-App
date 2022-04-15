@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Text, View, FlatList, Image, Pressable } from 'react-native';
-import { SearchBar } from 'react-native-elements';
+import { Text, View, FlatList, Image, Pressable, TextInput } from 'react-native';
 import {SERVER_URI} from '@env'
 
 import {globalStyles} from '../styles/global'
+import { Button } from "react-native-elements";
 
 export default function List({navigation, Search}){
     const [mangas, setMangas] = useState({});
@@ -64,25 +64,27 @@ export default function List({navigation, Search}){
         if(Search){
             return (
                 <View style={globalStyles.container}>
+                    <View style={{flexDirection: 'row'}}>
+                        <TextInput 
+                            selectionColor={"#b36b00"} 
+                            style={globalStyles.input}
+                            onChangeText={setSearch}
+                            placeholder="Type Here..."
+                            value={search}
+                        />
+                        <View style={{paddingTop: 15}}>
+                            <Button
+                                title={'Buscar'}
+                                onPress={() => console.log(search)}
+                                buttonStyle={{backgroundColor: '#b36b00', borderRadius: 20,}}
+                            />
+                        </View>
+                    </View>
                     <FlatList 
                         data={filteredMangas}
                         initialScrollIndex={0}
                         keyExtractor={(item) => item._id}
                         renderItem={renderItem}
-                        ListHeaderComponent={
-                            <SearchBar 
-                            round
-                            searchIcon={{ size: 24 }}
-                            onChangeText={(text) => {
-                                setSearch(text)
-                                searchFilterFunction(text)
-                            }}
-                            onClear={(text) => searchFilterFunction('')}
-                            placeholder="Type Here..."
-                            value={search}
-                            inputContainerStyle={{width: 300}} 
-                            />
-                        }
                     />
                 </View>
             )
