@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, Pressable, Alert } from 'react-native';
+import { Text, View, Pressable, Alert, useState } from 'react-native';
 import { Avatar } from 'react-native-elements';
 import {globalStyles} from '../styles/global'
 import {profileStyles} from '../styles/profileStyle'
@@ -9,10 +9,6 @@ const handleClick = () => {
         {text: 'Finardo bro', onPress: () => console.log('yasss') }
     ]);
 }
-
-const [profile, setProfile] = useState({})
-const [data, setData] = useState([])
-
 
 export default function Profile(){
     return (
